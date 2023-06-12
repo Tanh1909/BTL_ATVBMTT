@@ -43,6 +43,43 @@ public class Convert {
         }
       return str;
     }
+    public static String binaryToHex(String binaryString) {
+        // Kiểm tra nếu độ dài chuỗi nhị phân không phải là bội số của 4
+        if (binaryString.length() % 4 != 0) {
+            return "Invalid binary string";
+        }
+
+        StringBuilder hexString = new StringBuilder();
+        int i = 0;
+
+        while (i < binaryString.length()) {
+            String fourBits = binaryString.substring(i, i + 4);
+            int decimal = Integer.parseInt(fourBits, 2);
+            String hex = Integer.toHexString(decimal);
+            hex=hex.toUpperCase();
+            hexString.append(hex);
+            i += 4;
+        }
+
+        return hexString.toString();
+    }
+    public static String hexToBinary(String hexString) {
+        StringBuilder binaryString = new StringBuilder();
+
+        for (int i = 0; i < hexString.length(); i++) {
+            char hexChar = hexString.charAt(i);
+            int decimal = Integer.parseInt(String.valueOf(hexChar), 16);
+            String binary = Integer.toBinaryString(decimal);
+            // Đảm bảo chuỗi nhị phân có 4 bits
+            while (binary.length() < 4) {
+                binary = "0" + binary;
+            }
+            binaryString.append(binary);
+        }
+
+        return binaryString.toString();
+    }
+
     public static String BitSetToBit(BitSet bitSet) {
         String str="";
         for(int i=0;i<64;i++){

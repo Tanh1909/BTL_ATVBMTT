@@ -6,6 +6,8 @@ package view;
 
 import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
+
+import service.Convert;
 import service.DES;
 import service.FileService;
 
@@ -288,7 +290,7 @@ public class DesScreen extends javax.swing.JFrame {
 
     private void button3ActionPerformed(java.awt.event.ActionEvent evt) {
 
-        text3.setText(DES.encrypt(text1.getText().trim()));
+        text3.setText(Convert.binaryToHex(DES.encrypt(text1.getText().trim())));
 
     }
 
@@ -328,7 +330,7 @@ public class DesScreen extends javax.swing.JFrame {
     private void button4ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
 
-        text4.setText(DES.decrypt(text5.getText()).trim());
+        text4.setText(DES.decrypt(Convert.hexToBinary(text5.getText())).trim());
     }
 
     private void button7ActionPerformed(java.awt.event.ActionEvent evt) {
